@@ -1,6 +1,8 @@
 # Traductor
 
-PENDIENTE: descripción del proyecto. Se rellena al cerrar el acta de proyecto (fase F0).
+Traducción simultánea por audio para formación presencial. El profesor imparte en castellano y cada alumno recibe en su dispositivo, en tiempo real y en su idioma, lo que se dice en la sala.
+
+Descripción completa en `docs/proyecto/acta-de-proyecto.md`.
 
 ## Estado
 
@@ -8,7 +10,9 @@ PENDIENTE: descripción del proyecto. Se rellena al cerrar el acta de proyecto (
 |---|---|
 | Fase actual | F0 — Concepción |
 | Última puerta aprobada | ninguna |
-| Próxima puerta | G0 — Concepto aprobado |
+| Próxima puerta | G0 — Concepto aprobado, preparada y pendiente de firma |
+| Qué bloquea G0 | Cinco decisiones del responsable de producto. Ver `docs/proyecto/puertas/G0-concepto.md` |
+| Actualizado | 2026-10-15 |
 
 ## Estructura del repositorio
 

@@ -11,7 +11,7 @@ Descripción completa en `docs/proyecto/acta-de-proyecto.md`.
 | Fase actual | F0 — Concepción |
 | Última puerta aprobada | ninguna |
 | Próxima puerta | G0 — Concepto aprobado, preparada y pendiente de firma |
-| Qué bloquea G0 | Cinco decisiones del responsable de producto. Ver `docs/proyecto/puertas/G0-concepto.md` |
+| Qué bloquea G0 | Tres datos del responsable de producto: idiomas, hardware y dedicación. Ver `docs/proyecto/puertas/G0-concepto.md` |
 | Actualizado | 2026-10-15 |
 
 ## Estructura del repositorio

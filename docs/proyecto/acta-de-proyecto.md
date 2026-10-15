@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Versión | 0.1 |
+| Versión | 0.2 |
 | Fecha | 2026-10-15 |
 | Autor | Responsable de producto, con asistencia de IA |
 | Estado | borrador |
@@ -34,9 +34,10 @@ La alternativa existente es contratar intérpretes humanos, con un coste por hor
 | NEC-02 | Profesor | No alterar su forma de impartir: habla seguido, interactúa, se mueve por la sala | imprescindible |
 | NEC-03 | Profesor | Coste de operación nulo o próximo a cero | imprescindible |
 | NEC-04 | Alumno | Conectarse sin instalar nada y sin crear cuenta | PENDIENTE: confirmar si es imprescindible o deseable |
+| NEC-04b | Alumno remoto | Seguir la formación desde fuera de la sala | imprescindible |
 | NEC-05 | Profesor | Arrancar y dejarlo funcionando sin asistencia técnica | imprescindible |
 | NEC-06 | Empresa cliente | Que el uso sea compatible con su política de datos y de red | PENDIENTE: confirmar si alguna empresa cliente lo va a exigir por escrito |
-| NEC-07 | Alumno | Hacer preguntas y ser entendido por el profesor | PENDIENTE: decisión de alcance, ver apartado 4 |
+| NEC-07 | Alumno | Hacer preguntas y ser entendido por el profesor | descartada para esta versión, decisión de 2026-10-15. Se conserva el número |
 
 ## 4. Alcance
 
@@ -46,33 +47,30 @@ La alternativa existente es contratar intérpretes humanos, con un coste por hor
 - Traducción de ese audio a los idiomas de destino seleccionados.
 - Síntesis de voz en cada idioma de destino.
 - Entrega del audio traducido al dispositivo de cada alumno, con selección de idioma por el propio alumno.
-- Uso en formación presencial.
+- Uso en formación presencial y en formación remota.
 
 ### No entra
 
-Lista propuesta. `PENDIENTE: confirmar cada línea`. Esta sección es la que evita discusiones en F4, y hoy es la más débil del acta.
-
+- **Traducción de las intervenciones de los alumnos hacia el castellano.** Decisión de 2026-10-15: el flujo es solo de ida, del profesor a los alumnos. Las preguntas se siguen gestionando como hasta ahora. Queda como requisito aplazado con el número NEC-07 reservado.
 - Traducción de documentos, presentaciones ni material de apoyo.
 - Subtítulos en pantalla o en el dispositivo del alumno. Solo audio.
 - Grabación y archivo de las sesiones.
 - Clonación de la voz del profesor en el idioma de destino. La voz sintética será una voz genérica.
 - Gestión de alumnos, asistencia o facturación.
-- Formación impartida en remoto o híbrida.
-- Traducción de las intervenciones de los alumnos hacia el castellano.
 
-Las dos últimas exclusiones son decisiones de peso, no formalidades:
+Las cinco últimas exclusiones son propuesta de la asistencia técnica, no decisión expresa del responsable de producto. Se dan por aceptadas salvo corrección al firmar G0.
 
-- **Si la formación remota entra**, el diseño cambia poco. Si no entra, se puede resolver todo con un servidor local y sin internet.
-- **Si las preguntas de los alumnos entran**, el sistema pasa de un flujo de ida a un flujo bidireccional con varios micrófonos en una sala con ruido. Es, probablemente, más trabajo que todo lo demás junto. En una formación de habilidades, donde el alumno interviene constantemente, excluirlo limita bastante el valor. `PENDIENTE: decisión del responsable de producto.`
+Sobre el flujo de ida conviene ser explícito: en una formación de habilidades el alumno interviene constantemente, y con esta decisión sus intervenciones quedan fuera del sistema. Es una limitación real del alcance, aceptada a cambio de que el proyecto sea abordable.
 
 ## 5. Restricciones
 
 | ID | Tipo | Restricción | Origen |
 |----|------|-------------|--------|
-| RES-01 | Presupuesto | No hay presupuesto de gasto. El coste recurrente objetivo es 0 € | Responsable de producto |
+| RES-01 | Presupuesto | No hay presupuesto de gasto. El coste recurrente es 0 €, confirmado el 2026-10-15, y no se repercute al cliente | Responsable de producto |
 | RES-02 | Funcional | El idioma de origen es siempre el castellano | Responsable de producto |
 | RES-03 | Funcional | Idiomas de destino: inglés, portugués, hindi y otros. `PENDIENTE: lista cerrada` | Responsable de producto |
 | RES-04 | Entorno | La formación es presencial, en instalaciones del cliente, con su red wifi o sin ella | Responsable de producto |
+| RES-07 | Entorno | También hay alumnos remotos, fuera de la sala. El sistema tiene que ser accesible desde internet, lo que impide una solución exclusivamente local | Responsable de producto, 2026-10-15 |
 | RES-05 | Entorno | Cada alumno necesita auriculares. Sin auriculares, varias voces sintéticas suenan a la vez en la misma sala | Análisis técnico |
 | RES-06 | Técnica | El equipo disponible es el portátil del profesor. `PENDIENTE: modelo, memoria y si tiene GPU` | Análisis técnico |
 
@@ -89,9 +87,11 @@ Las cifras de los proveedores son sus propias afirmaciones comerciales, no medid
 | **E. Desarrollo propio con APIs de pago por uso** | Orden de magnitud: decenas de euros por curso de 4 h con 3 idiomas | Reconocimiento de voz en streaming entre 0,12 y 1,00 $/h según proveedor; síntesis de voz desde unos 0,70 $/h de audio generado, y se multiplica por cada idioma; traducción de texto aparte. Incompatible con RES-01, compatible con un modelo de repercutir coste |
 | **F. Desarrollo propio autoalojado con modelos abiertos** | 0 € de coste marginal | Única opción con coste recurrente real de 0 €. Requiere hardware propio suficiente y asume más latencia: las fuentes sitúan el reconocimiento de voz en streaming entre 1 y 5 s, al que hay que sumar traducción y síntesis por cada idioma |
 
-**Alternativa elegida: PENDIENTE.** La decisión depende de dos respuestas que solo puede dar el responsable de producto: si el coste se puede repercutir al cliente, y cuánto retardo es tolerable en su forma de dar clase. Hasta entonces, la candidata por defecto es F, por ser la única que respeta RES-01 literalmente.
+**Alternativa elegida: F, desarrollo propio autoalojado con modelos abiertos.** Decisión derivada de la respuesta del 2026-10-15: el coste no se puede repercutir al cliente y el presupuesto es 0 € real. Eso descarta B, C y E, que tienen coste por minuto o por hora.
 
-Conviene decirlo con claridad: si el coste se puede repercutir, la alternativa C o la D probablemente resuelvan el problema mejor, antes y con menos riesgo que construir algo. Un proyecto de desarrollo propio tiene sentido aquí si el presupuesto es de verdad cero, si el aprendizaje tiene valor por sí mismo, o si ninguna herramienta existente cubre el caso. Decidir eso es el objeto de la puerta G0.
+La alternativa D sigue viva, y no como formalidad: antes de escribir una línea de código de producción hay que probar las herramientas gratuitas con modo difusión en una sesión real. Si alguna entrega audio traducido a varios idiomas dentro del plan gratuito, sustituye a F y el proyecto se reduce a aprender a usarla. Es la primera tarea de F1 y puede cerrar el proyecto antes de empezarlo.
+
+La combinación de RES-01 y RES-07 es la restricción más dura del proyecto: coste cero y alumnos conectados desde fuera de la sala. Obliga a que todo el procesamiento ocurra en el equipo del profesor y a exponerlo a internet por un medio también gratuito. Es posible, y deja dos límites que habrá que medir en F1: el ancho de banda de subida disponible en las instalaciones del cliente, y cuántos alumnos remotos aguanta antes de degradarse.
 
 ## 7. Criterios de éxito
 
@@ -99,9 +99,9 @@ Conviene decirlo con claridad: si el coste se puede repercutir, la alternativa C
 
 | ID | Criterio | Valor objetivo propuesto | Cómo se mide | Cuándo |
 |----|----------|--------------------------|--------------|--------|
-| CE-01 | Retardo entre la frase hablada y su audio traducido | ≤ 5 s de media. `PENDIENTE: confirmar` | Cronometrado sobre grabación, 20 frases de muestra | F4 y primera sesión real |
+| CE-01 | Retardo entre la frase hablada y su audio traducido | ≤ 5 s de media. Confirmado el 2026-10-15 | Cronometrado sobre grabación, 20 frases de muestra | F4 y primera sesión real |
 | CE-02 | El alumno puede seguir la formación | ≥ 80 % de los alumnos responden que pudieron seguirla sin perder contenido relevante. `PENDIENTE: confirmar` | Una pregunta al final de la sesión | Primeras 3 sesiones reales |
-| CE-03 | Coste por sesión | 0 €. `PENDIENTE: confirmar si se mantiene` | Factura del proveedor, si hay alguno | Mensual |
+| CE-03 | Coste por sesión | 0 €. Confirmado el 2026-10-15 | Factura del proveedor, si hay alguno | Mensual |
 | CE-04 | Tiempo de alta del alumno | ≤ 2 min, sin instalar nada. `PENDIENTE: confirmar` | Cronometrado con 3 alumnos reales | F4 |
 | CE-05 | Continuidad | Una sesión de 4 h sin cortes que obliguen a detener la clase | Registro de incidencias de la sesión | Primeras 3 sesiones reales |
 | CE-06 | Fidelidad terminológica | El vocabulario propio de la materia se traduce de forma correcta y estable. `PENDIENTE: definir cómo se mide` | Lista de 30 términos de referencia, revisada por un hablante del idioma | F4 |
@@ -147,3 +147,4 @@ Esto no es un obstáculo para el proyecto, y es un argumento de peso a favor de 
 | Versión | Fecha | Autor | Cambio | SC |
 |---------|-------|-------|--------|----|
 | 0.1 | 2026-10-15 | Responsable de producto, con asistencia de IA | Versión inicial. Alternativas documentadas con fuentes externas. Huecos marcados PENDIENTE | — |
+| 0.2 | 2026-10-15 | Responsable de producto, con asistencia de IA | Decisiones del responsable de producto: presupuesto 0 € sin repercutir, flujo solo de ida, retardo máximo 5 s, formación presencial y remota. Alternativa F elegida. Nueva restricción RES-07 | — |
